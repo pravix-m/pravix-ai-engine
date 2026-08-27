@@ -1,0 +1,45 @@
+name: Pravix Daily Post
+
+on:
+  schedule:
+    # 09:00 UTC = 2:30 PM IST — matches Hasun's schedule
+    - cron: "0 9 * * *"
+  workflow_dispatch: {}   # lets you trigger it manually from the GitHub app
+
+jobs:
+  generate-and-post:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install google-generativeai requests
+
+      - name: Generate post text
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python generate_post.py
+
+      - name: Generate image
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python generate_image.py
+
+      - name: Post to socials
+        env:
+          ZERNIO_API_KEY: ${{ secrets.ZERNIO_API_KEY }}
+        run: python post_to_socials.py
+
+      - name: Commit output for dashboard
+        run: |
+          git config user.name "pravix-bot"
+          git config user.email "bot@pravix.in"
+          git add output/
+          git commit -m "Daily post $(date -u +%Y-%m-%d)" || echo "Nothing to commit"
+          git push
