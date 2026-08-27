@@ -1,5 +1,8 @@
 name: Pravix Daily Post
 
+permissions:
+  contents: write
+
 on:
   schedule:
     # 09:00 UTC = 2:30 PM IST — matches Hasun's schedule
