@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pravix — Control Room</title>
+<style>
+  :root {
+    --navy: #10204d;
+    --blue: #1e3a8a;
+    --blue-light: #3b5bdb;
+    --green: #22c55e;
+    --orange: #f97316;
+    --paper: #f5f7fb;
+    --ink: #10162e;
+    --muted: #6b7280;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  header {
+    background: linear-gradient(135deg, var(--navy), var(--blue));
+    color: white;
+    padding: 28px 20px 32px;
+    border-radius: 0 0 24px 24px;
+  }
+  .brand-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .p-mark {
+    width: 34px; height: 34px;
+    border-radius: 9px;
+    border: 2.5px solid white;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800;
+    font-size: 18px;
+    position: relative;
+  }
+  .p-mark::after {
+    content: "";
+    position: absolute;
+    top: -3px; right: -3px;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--orange);
+  }
+  .brand-name { font-weight: 700; font-size: 15px; letter-spacing: 0.5px; }
+  .tagline { font-size: 12px; opacity: 0.75; margin-top: 1px; }
+  h1 { font-size: 22px; margin: 20px 0 4px; font-weight: 700; }
+  .subhead { font-size: 13px; opacity: 0.8; margin: 0; }
+
+  main { padding: 18px 16px 60px; max-width: 480px; margin: 0 auto; }
+
+  .status-strip {
+    display: flex;
+    gap: 10px;
+    margin-top: -18px;
+  }
+  .pill {
+    flex: 1;
+    background: white;
+    border-radius: 14px;
+    padding: 12px 10px;
+    text-align: center;
+    box-shadow: 0 4px 14px rgba(16,32,77,0.08);
+  }
+  .pill .num { font-size: 18px; font-weight: 700; color: var(--blue); }
+  .pill .lbl { font-size: 10.5px; color: var(--muted); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.4px; }
+
+  .card {
+    background: white;
+    border-radius: 16px;
+    padding: 18px;
+    margin-top: 16px;
+    box-shadow: 0 4px 14px rgba(16,32,77,0.06);
+  }
+  .card h2 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--muted);
+    margin: 0 0 10px;
+  }
+  .post-topic {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+  .post-text {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: #2a3350;
+    white-space: pre-wrap;
+  }
+  .meta-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+    font-size: 11.5px;
+    color: var(--muted);
+  }
+  .badge {
+    display: inline-block;
+    padding: 3px 9px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .badge.on { background: rgba(34,197,94,0.12); color: #16833f; }
+  .badge.off { background: rgba(107,114,128,0.12); color: var(--muted); }
+
+  .empty {
+    text-align: center;
+    padding: 30px 10px;
+    color: var(--muted);
+    font-size: 13.5px;
+  }
+  .empty .icon { font-size: 28px; margin-bottom: 8px; }
+
+  footer {
+    text-align: center;
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 30px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand-row">
+    <div class="p-mark">P</div>
+    <div>
+      <div class="brand-name">PRAVIX SPHERE</div>
+      <div class="tagline">the growth catalyst</div>
+    </div>
+  </div>
+  <h1>Control Room</h1>
+  <p class="subhead">Your AI marketing engine, at a glance.</p>
+</header>
+
+<main>
+  <div class="status-strip">
+    <div class="pill">
+      <div class="num" id="statusPill">—</div>
+      <div class="lbl">Posting</div>
+    </div>
+    <div class="pill">
+      <div class="num" id="platformCount">—</div>
+      <div class="lbl">Platforms</div>
+    </div>
+    <div class="pill">
+      <div class="num" id="lastRun">—</div>
+      <div class="lbl">Last Run</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Latest Generated Post</h2>
+    <div id="postContent">
+      <div class="empty">
+        <div class="icon">📝</div>
+        Nothing generated yet.<br>Runs daily at 2:30 PM IST.
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>How this works</h2>
+    <div class="post-text" style="color:#4b5568;">
+      Every day, an automated job writes a post, generates an image, and — once you connect posting — publishes it to LinkedIn and Instagram on its own. This page always shows the latest one.
+    </div>
+  </div>
+</main>
+
+<footer>Pravix Sphere · automated content engine</footer>
+
+<script>
+  async function loadLatestPost() {
+    try {
+      const res = await fetch('../output/latest_post.json?_=' + Date.now());
+      if (!res.ok) throw new Error('not found');
+      const post = await res.json();
+
+      document.getElementById('postContent').innerHTML = `
+        <div class="post-topic">${escapeHtml(post.topic || 'Untitled')}</div>
+        <div class="post-text">${escapeHtml(post.linkedin_text || '')}</div>
+        <div class="meta-row">
+          <span>${formatDate(post.generated_at)}</span>
+          <span class="badge on">Generated</span>
+        </div>
+      `;
+      document.getElementById('lastRun').textContent = formatShort(post.generated_at);
+    } catch (e) {
+      // keep empty state
+    }
+  }
+
+  async function loadConfig() {
+    try {
+      const res = await fetch('../config.json?_=' + Date.now());
+      const cfg = await res.json();
+      document.getElementById('statusPill').textContent = cfg.posting.enabled ? 'LIVE' : 'OFF';
+      document.getElementById('platformCount').textContent = cfg.posting.platforms.length;
+    } catch (e) {
+      document.getElementById('statusPill').textContent = 'OFF';
+    }
+  }
+
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  function formatDate(iso) {
+    if (!iso) return '';
+    const d = new Date(iso);
+    return d.toLocaleString('en-IN', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+  }
+
+  function formatShort(iso) {
+    if (!iso) return '—';
+    const d = new Date(iso);
+    return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short' });
+  }
+
+  loadLatestPost();
+  loadConfig();
+</script>
+
+</body>
+</html>
