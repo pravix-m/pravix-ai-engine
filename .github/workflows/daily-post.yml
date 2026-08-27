@@ -40,10 +40,17 @@ jobs:
           ZERNIO_API_KEY: ${{ secrets.ZERNIO_API_KEY }}
         run: python post_to_socials.py
 
+      - name: Copy output into docs for the dashboard
+        run: |
+          mkdir -p docs/data
+          cp output/latest_post.json docs/data/latest_post.json || true
+          cp output/latest_image.png docs/data/latest_image.png || true
+          cp config.json docs/data/config.json
+
       - name: Commit output for dashboard
         run: |
           git config user.name "pravix-bot"
           git config user.email "bot@pravix.in"
-          git add output/
+          git add output/ docs/data/
           git commit -m "Daily post $(date -u +%Y-%m-%d)" || echo "Nothing to commit"
           git push
