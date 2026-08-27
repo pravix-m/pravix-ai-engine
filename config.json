@@ -1,0 +1,41 @@
+{
+  "brand": {
+    "name": "Pravix Sphere",
+    "handle": "Pravix.AI",
+    "tagline": "The Growth Catalyst",
+    "positioning": "Marketing ~ AI ~ Automation",
+    "colors": {
+      "primary": "#1E3A8A",
+      "accent_green": "#22C55E",
+      "accent_orange": "#F97316"
+    },
+    "tone": "friendly and approachable",
+    "audience": "small businesses and startups",
+    "services": [
+      "Go Global — grow beyond boundaries",
+      "Automation — streamline for efficiency",
+      "Business — research & strategy support"
+    ]
+  },
+  "posting": {
+    "platforms": ["linkedin", "instagram"],
+    "schedule_utc": "09:00",
+    "timezone_note": "09:00 UTC = 2:30 PM IST",
+    "enabled": false
+  },
+  "content_topics": [
+    "how small businesses can use AI without hiring a data team",
+    "automation habits that save founders 5+ hours a week",
+    "signs your business is ready to 'go global'",
+    "one AI tool small businesses are sleeping on",
+    "the real cost of doing marketing manually",
+    "how to tell if a lead is worth chasing",
+    "why 'growth catalyst' isn't just a tagline for us"
+  ],
+  "post_style_notes": [
+    "short punchy hook as first line",
+    "no corporate jargon",
+    "end with a soft call-to-action or question",
+    "include relevant hashtags, max 5"
+  ]
+}
