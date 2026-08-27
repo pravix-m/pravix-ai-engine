@@ -35,6 +35,11 @@ def main():
     concept = post.get("image_concept", "modern blue and green abstract gradient")
 
     genai.configure(api_key=api_key)
+
+    # TEMP DIAGNOSTIC: list available models so we can pick the right one
+    available = [m.name for m in genai.list_models() if "image" in m.name.lower() or "generateContent" in getattr(m, "supported_generation_methods", [])]
+    raise RuntimeError("MODEL_LIST: " + " | ".join(available))
+
     model = genai.GenerativeModel("gemini-2.0-flash-exp-image-generation")
 
     full_prompt = (
