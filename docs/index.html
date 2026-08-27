@@ -186,7 +186,7 @@
 <script>
   async function loadLatestPost() {
     try {
-      const res = await fetch('../output/latest_post.json?_=' + Date.now());
+      const res = await fetch('./data/latest_post.json?_=' + Date.now());
       if (!res.ok) throw new Error('not found');
       const post = await res.json();
 
@@ -206,7 +206,7 @@
 
   async function loadConfig() {
     try {
-      const res = await fetch('../config.json?_=' + Date.now());
+      const res = await fetch('./data/config.json?_=' + Date.now());
       const cfg = await res.json();
       document.getElementById('statusPill').textContent = cfg.posting.enabled ? 'LIVE' : 'OFF';
       document.getElementById('platformCount').textContent = cfg.posting.platforms.length;
